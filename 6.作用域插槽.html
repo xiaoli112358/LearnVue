@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+
+<body>
+<div id="app">
+    <cpn>
+        <template slot-scope="slot">
+            <span>{{slot.data.join('* ')}}</span>
+        </template>
+    </cpn>
+</div>
+<template id="cpn">
+    <div>
+        <slot :data="fruits">
+            <ul>
+                <li v-for="item in fruits">{{item}}</li>
+            </ul>
+        </slot>
+    </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好啊'
+        },
+        components: {
+            cpn: {
+                template: '#cpn',
+                data() {
+                    return {
+                        fruits: ['苹果', '草莓', '榴莲', '香蕉']
+                    }
+                }
+            },
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <div>
+        <!--3.使用组件-->
+        <cpn :cfruit="originalFruit" :cmessage="message"></cpn>
+    </div>
+</div>
+<template id="cpn">
+    <!--此处不能写多个同一级的div，只能是一个主div包含其他的div-->
+    <div>
+        <ul>
+            <li v-for="item in cfruit">{{item}}</li>
+        </ul>
+        <div>{{cmessage}}</div>
+    </div>
+
+</template>
+<script src="../js/vue.js"></script>
+<script>
+    // 1.注册一个全局组件
+    const cpn = {
+        template: '#cpn',
+        props: ['cfruit', 'cmessage'],
+        data() {
+            return {}
+        }
+    }
+
+
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好啊',
+            originalFruit: ['苹果', '草莓', '榴莲', '香蕉'],
+            fruits: []
+        },
+        components: {
+            cpn
+        }
+    })
+
+
+</script>
+</body>
+</html>

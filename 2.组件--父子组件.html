@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <div>
+        <!--3.使用组件-->
+        <mycpn2></mycpn2>
+    </div>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    //1.创建组件实例
+    const mycpn = Vue.extend({
+        template: `
+            <div>
+                <h2>我是标题</h2>
+                <p>我是内容，哈哈哈哈</p>
+            </div>`
+    })
+    const mycpn2 = Vue.extend({
+        template: `
+            <div>
+                <h2>我是标题</h2>
+                <p>我是内容，呵呵呵呵</p>
+                <mycpn></mycpn>
+            </div>`,
+        components: {
+            mycpn: mycpn
+        }
+    })
+
+
+    const app = new Vue({
+        el: '#app',
+        data: {
+            originalFruit: ['苹果', '草莓', '榴莲', '香蕉'],
+            fruits: []
+        },
+        components: {
+            mycpn2: mycpn2
+        }
+    })
+
+
+</script>
+</body>
+</html>
